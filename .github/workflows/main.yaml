@@ -6,9 +6,9 @@ on:
       - main
 
 env:
-  #   GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
-  #   SERVICE_NAME: my-express-app
-  #   REGION: us-central1
+  GOOGLE_PROJECT_ID: genial-broker-439308-d7
+  SERVICE_NAME: pomodoro-app
+  REGION: europe-north1
   DOCKER_IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/pomodoro-app
 
 jobs:
@@ -35,20 +35,20 @@ jobs:
           push: true
           tags: ${{ env.DOCKER_IMAGE_NAME }}:latest
 
-    #   - name: Set up Google Cloud CLI
-    #     uses: google-github-actions/setup-gcloud@v2
-    #     with:
-    #         project_id: ${{ env.PROJECT_ID }}
-    #         service_account_key_file: ${{ secrets.GCP_SA_KEY }}
+      - name: Set up Google Cloud CLI
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+          service_account_key_file: ${{ secrets.GCP_SA_KEY }}
 
-    #   - name: Deploy to Cloud Run
-    #     run: |
-    #         gcloud run deploy ${{ env.SERVICE_NAME }} \
-    #         --image docker.io/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }} \
-    #         --region ${{ env.REGION }} \
-    #         --platform managed \
-    #         --allow-unauthenticated \
-    #         --memory=256Mi \
-    #         --cpu=1 \
-    #         --min-instances=0 \
-    #         --port=80
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy ${{ env.SERVICE_NAME }} \
+          --image docker.io/${{ env.DOCKER_IMAGE_NAME }}:${{ github.sha }} \
+          --region ${{ env.REGION }} \
+          --platform managed \
+          --allow-unauthenticated \
+          --memory=256Mi \
+          --cpu=1 \
+          --min-instances=0 \
+          --port=80
