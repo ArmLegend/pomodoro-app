@@ -1,3 +1,3 @@
 # Podomoro Web App
 
-`link:` https://www.google.com
+`link:` https://google.com
