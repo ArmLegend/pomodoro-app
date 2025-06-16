@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  GOOGLE_PROJECT_ID: genial-broker-439308-d7
+  PROJECT_ID: genial-broker-439308-d7
   SERVICE_NAME: pomodoro-app
   REGION: europe-north1
   DOCKER_IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/pomodoro-app
